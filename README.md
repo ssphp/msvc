@@ -1,2 +1,100 @@
 # msvc
-a freamwork base service for php
+
+###### MSVC 框架的核心思想是在 MVC 设计模式的基础上将业务逻辑进行剥离放入 Service 层，让 Controller 层变得更轻以适应不同类型的终端和应用场景。 并且支持将 Service 层部署到不同的服务器以适应更加复杂的业务需求和高并发需求，业务规模扩大后可以用Java等语言来开发 Service 逐步替换原有代码，无缝接入到现有系统。
+
+###### Service 层的出现也让 Model 层变得更轻，Model 层只需要关注与数据有关的封装，多数时候使用模拟出来的默认 Model 就足以应对各种需求， 当某个数据比较复杂需要扩展一些操作时可在 _m 目录下编写一个继承 Model 的类即可。
+
+###### 五个核心函数即可构成基本的 MSVC 设计模式的 S 框架
+
+<table>
+	<thead>
+		<tr>
+			<td width="250">函数</td>
+			<td>说明</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+MSVC( $root_path = '..' )
+			</td>
+			<td>
+启动框架，不需要任何参数，默认使用入口文件的上一级作为根目录，或传入一个参数指出项目的根目录 
+			</td>
+		</tr>
+		<tr>
+			<td>
+M( $model_name )
+			</td>
+			<td>
+根据名称（库名.表名 如：test.user）获取一个 Model 对象，里面包含对数据的各种基本操作，也可以自己在 _m 中继承Model类进行扩展 
+			</td>
+		</tr>
+		<tr>
+			<td>
+<em>S</em>( $service_name, $args )
+			</td>
+			<td>
+根据名称（包.类.方法 如：system.user.login）调用一个 <em>Service</em> 接口
+			</td>
+		</tr>
+		<tr>
+			<td>
+V( $file, $data )
+			</td>
+			<td>
+根据视图文件（如：user/login.html）调用一个 View，将数据和视图进行整合
+			</td>
+		</tr>
+		<tr>
+			<td>
+C( $path )
+			</td>
+			<td>
+根据路径（如：user/login.html）调用一个 Controller 以实现调用其他控制器处理页面，请求到达时框架会自动调用跟URL对应的控制器进行处理 
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>
+	三种框架运行模式
+</p>
+
+<table>
+	<thead>
+		<tr>
+			<td width="250">函数</td>
+			<td>说明</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+MSVC( $root_path = '..' )
+			</td>
+			<td>
+启动完整的 MSVC 四层框架，默认采用严格跨层访问控制（可通过 ENABLE_MSVC_CROSS 允许任意跨层访问） 
+			</td>
+		</tr>
+		<tr>
+			<td>
+MVC( $root_path = '..' )
+			</td>
+			<td>
+启动标准的 MVC 三层框架，允许 Controller 直接访问 Model 层 
+			</td>
+		</tr>
+		<tr>
+			<td>
+MS( $root_path = '..' )
+			</td>
+			<td>
+启动 MS 两层框架，只对外提供服务 
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+##### _m、_s、_c、_v 四层的文件一般放在站点目录下，也可以放在根目录的 _m、_s、_c、_v 中作为所有站点公共的。
