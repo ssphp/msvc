@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>{#S Framework} － {#Model}</title>
+<!-- @common/head.html -->
+</head>
+<body>
+<!-- @common/header.html -->
+
+<p>
+	Model 默认是自动的，不需要做任何操作就可以使用 M( '库名.表名' ) 进行操作并具有代码提示。如果整个站点只有一个库时也可以只传入表名 M( '表名' )。
+当然也可以传入一个不存在的表名表示一个匿名模型，用来实现一些跨表操作，只传入一个库名也是被允许的。
+</p>
+<p>
+<code>
+/**
+ * 调用 Model
+ * @param string $model_name	库别名.表名，只有一个库时可以只写表名
+ */
+function M( $model_name )
+{
+	return MSVC::getModel( $model_name );
+}
+</code>
+</p>
+<p>
+	默认只允许 Service 调用 Model，想要在 Controller 直接调用 Model 需要打开配置 ENABLE_MSVC_CROSS = true
+</p>
+<p>
+	Model 的底层使用 PDO，请安装好 PDO 扩展和相应数据库的扩展，例如：pdo_mysql
+</p>
+<p>
+	可以在 _m 目录下创建一个类来继承 Model 实现对 Model 的扩展。例如：<em>_m/test/user.php</em> 类名使用：<em>m_test_user</em>
+</p>
+<p>
+	find、order、group、query、begin、end 这几个方法可以串联
+</p>
+<p>
+	查询账号为 t1 的用户信息: <code>M( 'test.user' )->find( ['id'=>'t1'] )->first( 'id,name' );</code>
+</p>
+<p>
+	查询所有3班的用户信息: <code>M( 'test.user' )->find( '`class`=?', [3] )->all();</code>
+</p>
+<p>
+	将所有性别为男的用户的积分加1: <code>M( 'test.user' )->find( '`sex`=?', '男' )->update( ['score'=>':score+1'] );</code>
+</p>
+<p>
+	插入一个用户: <code>M( 'test.user' )->insert( ['id'=>'t9','name'=>'T9'] );</code>
+</p>
+<p>
+	事务处理: <code>$m = M( 'test.user' )->begin(); $m->end( $m->insert( ['id'=>'t9','name'=>'T9'] ) && $m->insert( ['id'=>'t10','name'=>'T10'] ) );</code>
+</p>
+<img src="/mind/model.svg"/><br/>
+
+
+</body>
+</html>

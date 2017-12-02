@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>{#S Framework} － {#Service}</title>
+<!-- @common/head.html -->
+</head>
+<body>
+<!-- @common/header.html -->
+
+<p>
+	在 _s 目录下创建一个普通类来实现一个 <em>Service</em> 而不需要继承任何父类。例如：<em>_s/test/user.php</em> 类名使用：<em>s_test_user</em>
+</p>
+
+<p>
+	每个服务接口是 <em>Service</em> 类的公共方法，方法必须有并且只能有一个参数，传入的是 Key-Value 数组形式的参数。下划线开头的方法被禁止从外部调用。
+</p>
+
+<p>
+	使用 <code>S( 'test.user.login', ['account'=>'aaa','pwd'=>'.....'] )</code> 来调用一个服务接口。
+</p>
+<p>
+<code>
+/**
+ * 调用 Service，应当以 OK 或 FAILED 函数构造一个结果进行输出
+ * @param string $service_name	服务名（包名.类名.方法名），用 . 连接
+ * @param array $args	Key-Value 数组，所有参数以这种方式传递给 Service，远程调用接口以 POST 或者 JSON(顶层为Key-Value格式) 传递参数
+ * @return array <string, any>，固定返回的数据： error=>int 0 表示没有错误，非0表示错误代码，message 错误信息或者其他想传达的信息
+ */
+function S( $service_name, $args=[] )
+{
+	return MSVC::callService( $service_name, $args );
+}
+</code>
+</p>
+<p>
+	<em>Service</em> 的返回值建议使用 OK() 和 FAILED() 两个函数进行规范化处理<br/>
+</p>
+<p>
+	<code>
+/**
+ * 构造一个成功的标准结果，error 为 0
+ * @param array $obj	要返回的数据
+ * @return array	加上标准输出参数 error、message 之后的结果（Key-Value格式）
+ */
+function OK( $obj=null )
+{
+	if( !is_array( $obj ) ) $obj = [];
+	$obj['error'] = 0;
+	$obj['message'] = '';
+	return $obj;
+}
+
+/**
+ * 构造一个处理失败的标准结果，error 如果没有指定 默认为 -1
+ * @param array $obj	要返回的数据
+ * @return array	加上标准输出参数 error、message 之后的结果（Key-Value格式）
+ */
+function FAILED( $message, $error=-1, $obj=null )
+{
+	if( !is_array( $obj ) ) $obj = [];
+	$obj['error'] = $error != -1 ? $error : -1;
+	$obj['message'] = $message;
+	return $obj;
+}
+	</code>
+</p>
+
+<p>
+	在 <em>config.php</em> 中设置某个路径的服务为远程地址，那么调用时将会从远程调用服务并返回结果
+</p>
+<p>
+	<code>
+'SERVICE' => [
+	'test.user.'	=>	'http://api.user.xxxx.com/test/user/'
+],
+	</code>
+</p>
+
+
+<p>
+	可以使用 _willCall 在调用本服务的任何接口之前进行处理
+</p>
+
+<p>
+	<code>
+class s_test
+{
+	/**
+	 * 在调用本类的每个服务接口之前进行处理
+	 * @param string $action 请求的服务接口
+	 * @param string $args 请求的服务接口的参数
+	 * @return false - 数据验证失败或其他情况禁止继续调用， true(或null) - 继续调用，其他结果 - 直接用该数据结束本次请求
+	 */
+	function _willCall( $action, $args )
+	{
+		.....
+	}
+
+	.....
+}
+
+	</code>
+</p>
+
+<p>
+	可以使用 _didCall 在服务接口调用之后对结果进行处理
+</p>
+
+<p>
+	<code>
+class s_test
+{
+	/**
+	 * 在调用本类的每个服务接口调用之后对结果进行处理
+	 * @param string $action 请求的 Action
+	 * @param string $args 请求的 Action 的参数
+	 * @param string $result 要输出的结果
+	 * @return null - 不对结果进行处理， 其他结果 - 直接用该数据代替结果
+	 */
+	function _didCall( $action, $args, $result )
+	{
+		.....
+	}
+
+	.....
+}
+
+	</code>
+</p>
+
+<p>
+	让多个类继承某个父类，在父类中定义上述行为可以实现对多个服务的处理
+</p>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>{#S Framework} － {#Config}</title>
+<!-- @common/head.html -->
+</head>
+<body>
+<!-- @common/header.html -->
+
+<p>
+	配置文件分为全局配置<code>/config.php</code>和站点配置<code>/站点/config.php</code>，配置文件，站点的配置优先级更高
+</p>
+
+<p>
+	配置文件中定义<code>$config</code>变量作为输出
+</p>
+
+<p>
+	部分配置<code>SITE、REWRITE</code>等在定位站点之前所需的配置只能在根配置文件中配置
+</p>
+
+<p>
+	可以编写一个<code>user_config.php</code>作为对配置的补充（不同运行环境特有的配置），用户配置文件中应当直接设置<code>$config['xxxx']</code>来扩充配置的内容
+</p>
+
+<p>
+	如果没有配置<code>ONERROR</code>错误处理函数，默认会将错误写入<code>/logs/error/站点/年月日.log</code>（需设置写入权限），如果PHP环境配置了<code>display_errors</code>还会将错误直接输出
+</p>
+
+<p>
+	PHP环境中如果配置了 APC，则会使用 APC 缓存配置信息，如果修改了根配置文件需要让站点的配置文件做一次无意义的修改以更新缓存。
+</p>
+
+<p>
+根配置文件代码
+</p>
+<p>
+<code>
+{$root_config}
+</code>
+</p>
+
+<p>
+用户配置文件代码
+</p>
+<p>
+<code>
+{$user_config}
+</code>
+</p>
+
+<p>
+站点配置文件代码
+</p>
+<p>
+<code>
+{$site_config}
+</code>
+</p>
+
+
+<p>
+Apache 伪静态配置
+</p>
+<p>
+<code>
+RewriteEngine on
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]
+</code>
+</p>
+
+<p>
+Nginx 伪静态配置
+</p>
+<p>
+<code>
+location / {
+	root   /opt/case/****/webroot;
+	index  index.php;
+	if (!-e $request_filename) {
+		rewrite  ^/(.*)$  /index.php/$1  last;
+		break;
+	}
+
+}
+
+location ~ \.php($|/) {
+	root           /opt/case/****/webroot;
+	fastcgi_pass   127.0.0.1:9000;
+	fastcgi_index  index.php;
+	include        fastcgi_params;
+
+	set $path_info "";
+	set $real_script_name $fastcgi_script_name;
+	if ($fastcgi_script_name ~ "^(.+?\.php)(/.+)$") {
+		set $real_script_name $1;
+		set $path_info $2;
+	}
+	fastcgi_param SCRIPT_FILENAME $document_root$real_script_name;
+	fastcgi_param SCRIPT_NAME $real_script_name;
+	fastcgi_param PATH_INFO $path_info;
+}
+</code>
+</p>
+
+</body>
+</html>

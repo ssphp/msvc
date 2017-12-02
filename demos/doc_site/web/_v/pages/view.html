@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>{#S Framework} － {#Lang}</title>
+<!-- @common/head.html -->
+</head>
+<body>
+<!-- @common/header.html -->
+
+<p>
+	在 _v 目录下创建一个文件作为输出的 View，可以是 html 也可以是其他任何类型的文件
+</p>
+
+<p>
+	使用 <code>return V( '/test/user/login.html', $data )</code> 调用一个 View 并整合数据后返回
+</p>
+
+<p>
+<code>
+/**
+ * 调用 View 显示一个页面
+ * @param string $view_file	View文件的相对路径
+ * @param array $data		要跟界面结合的数据，如果是列表使用数组，多重嵌套的列表使用嵌套的数组
+ * @return string	要数据的页面数据
+ */
+function V( $view_file=null, $data=[] )
+{
+	return MSVC::display( $view_file, $data );
+}
+</code>
+</p>
+
+<p>
+	没有指定 $view_file 时会使用当前请求的路径自动去寻找对应的视图文件。
+</p>
+
+<p>
+	如果调用默认视图文件并且传递数据，可以直接传入数据到 V 函数的第一个参数
+</p>
+
+<p>
+<code>
+return V( [zh_langs=>@file_get_contents( MSVC::$ROOT.'langs/zh' )] );
+</code>
+</p>
+
+<p>
+	嵌套 引用另一个 View
+	<code>&lt;!-- @xxxx.xxx --></code>
+</p>
+
+<p>
+	循环 遍历数据中的 xxxx，默认产生 $key 和 $value, 如果 $value 是数组，那么可以直接用 {$vvvvv} 访问其中的内容
+</p>
+<p>
+	<code>
+&lt;!-- #xxxx -->
+	......
+	&#x7b;$vvvvv}
+	......
+&lt;!-- / --> 或 &lt;!-- /xxxx --></code>
+</p>
+
+<p>
+	Tag 调用 Controller 中的 _TAG_xxx 方法 进行处理
+</p>
+<p>
+	<code>
+&lt;xx:xxx>
+	......
+	&#x7b;$vvvvv}
+	......
+&lt;/xx:xxx>	
+	</code>
+</p>
+<p>
+	传递参数给 Tag 方法
+</p>
+<p>
+	<code>
+&lt;xx:xxx xxx="xxx">
+	......
+	&#x7b;$vvvvv}
+	......
+&lt;/xx:xxx>
+	</code>
+</p>
+
+<p>
+	简单的条件判断（xxxx变量名前面不要加$）
+</p>
+<p>
+	<code>
+&lt;!-- if xxxx -->
+	....
+&lt;!-- /if -->
+	</code>
+</p>
+<p>
+	复杂的条件判断， elseif 或 else if 都可以
+</p>
+<p>
+	<code>
+&lt;!-- if xxxx=='aaa' -->
+	....
+&lt;!-- /if xxxx -->
+
+&lt;!-- if xxxx=='aaa' -->
+	....
+&lt;!-- else if xxxx='bbb' -->
+	....
+&lt;!-- else -->
+	....
+&lt;!-- /if -->
+	</code>
+</p>
+
+<p>
+	简单的三目运算
+</p>
+<p>
+	<code>
+&#x7b;xxxx?'aaa':'bbb'}
+	</code>
+</p>
+<p>	
+	复杂的三目运算
+</p>
+<p>
+	<code>
+&#x7b;xxxx=='aaa'?"hello $aaa":211}
+	</code>
+</p>
+
+<p>
+	普通变量
+</p>
+<p>
+	<code>
+&#x7b;$xxxx}
+	</code>
+</p>
+
+<p>
+	多语言翻译
+</p>
+<p>
+	<code>
+&#x7b;#xxxx}
+	</code>
+</p>
+
+<p>
+	默认的 View 标签配置，默认配置是一种以注释为主 方便前端开发人员查看和编辑的，检查比较宽松的表达式中允许出现对数组、全局变量 甚至调用函数、方法
+</p>
+
+<p>
+<code>
+[
+	'&lt;!--\s*@(.+?)\s*-->', 				// 嵌套
+	'&lt;!--\s*#(.+?)\s*-->', 				// 循环开始
+	'&lt;!--\s*/(.*?)-->', 					// 循环结束
+	'&lt;([\w\.]*?:\w+?)\s*(.*?)>', 		// 自定义标签开始
+	'&lt;/([\w\.]*?):(\w+?)\s*>', 				// 自定义标签结束
+	'&lt;!--\s*if\s+(.+?)\s*-->', 			// 条件开始
+	'&lt;!--\s*/if(.*?)-->', 				// 条件结束
+	'&lt;!--\s*else\s*-->', 				// else
+	'&lt;!--\s*else\s*if\s+(.+?)\s*-->', 	// else if
+	'&#x7b;(.+?\\?.+?\\:.+?)}', 			// 三目运算
+	'&#x7b;\$(.+?)}', 						// 变量
+	'&#x7b;#(.+?)}'							// 多语言
+]
+</code>
+</p>
+
+<p>
+	这是一个检查比较严格的版本，禁止出现数组、全局变量，禁止对函数、方法的调用
+</p>
+
+<p>
+<code>
+[
+	'&lt;!--\s*@([^[(:]+?)\s*-->', 				// 嵌套
+	'&lt;!--\s*#(\w+?)\s*-->', 					// 循环开始
+	'&lt;!--\s*/(.*?)-->', 						// 循环结束
+	'&lt;([\w\.]*?:\w+?)\s*(.*?)>', 			// 自定义标签开始
+	'&lt;/([\w\.]*?):(\w+?)\s*>', 					// 自定义标签结束
+	'&lt;!--\s*if\s+([^[(:]+?)\s*-->', 			// 条件开始
+	'&lt;!--\s*/if(.*?)-->', 					// 条件结束
+	'&lt;!--\s*else\s*-->', 					// else
+	'&lt;!--\s*else\s*if\s+([^[(:]+?)\s*-->', 	// else if
+	'&#x7b;([^[(:]+?\\?[^[(:]+?\\:[^[(:]+?)}', 	// 三目运算
+	'&#x7b;\$(\w+?)}', 							// 变量
+	'&#x7b;#(\w+?)}'							// 多语言
+]
+</code>
+</p>
+
+<p>
+	这是一个类似 ThinkPHP 的风格
+</p>
+
+<p>
+<code>
+[
+	'&lt;include file=[\'"]\s*@(.+?)\s*[\'"](.*?)>', 	// 嵌套
+	'&lt;volist name=[\'"]\s*#(.+?)\s*[\'"](.*?)>', 	// 循环开始
+	'&lt;/volist(.*?)>', 								// 循环结束
+	'&lt;([\w\.]*?:\w+?)\s*(.*?)>', 					// 自定义标签开始
+	'&lt;/([\w\.]*?):(\w+?)\s*>', 							// 自定义标签结束
+	'&lt;if\s+(.+?)>', 									// 条件开始
+	'&lt;/if(.*?)>', 									// 条件结束
+	'&lt;else>', 										// else
+	'&lt;elseif\s+(.+?)>', 								// else if
+	'&#x7b;(.+?\\?.+?\\:.+?)}', 						// 三目运算
+	'&#x7b;\$(.+?)}', 									// 变量
+	'&#x7b;#(.+?)}'										// 多语言
+]
+</code>
+</p>
+
+</body>
+</html>

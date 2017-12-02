@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>{#S Framework} － {#Download}</title>
+<!-- @common/head.html -->
+<style>
+body>table{
+	color: #000;
+	background: #fff;
+}
+body>table td{
+	padding: 3px 15px;
+}
+</style>
+</head>
+<body>
+<!-- @common/header.html -->
+
+<table>
+	<tbody>
+		<tr>
+			<td>v0.2</td>
+			<td><a href="http://res.msvc.top/download/msvc_0.2_hello.tgz">Hello World 下载</a></td>
+			<td><a href="http://res.msvc.top/download/msvc_0.2_hello_sites.tgz">多站点演示下载</a></td>
+		</tr>
+	</tbody>
+</table>
+
+<p>
+框架文件为：webroot/index.php 是的，只有一个文件
+</p>
+
+<p>
+可以把 Demo 直接放在任意Web路径中，直接使用地址 http://....../webroot/ 访问即可（但无法实现伪静态）
+</p>
+
+<p>
+将虚拟主机指向 webroot，然后参照下面的伪静态配置方法进行配置后可以通过不同域名对不同站点进行访问
+</p>
+
+<p>
+Apache 伪静态配置
+</p>
+<p>
+<code>
+RewriteEngine on
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]
+</code>
+</p>
+
+<p>
+Nginx 伪静态配置
+</p>
+<p>
+<code>
+location / {
+	root   /opt/case/****/webroot;
+	index  index.php;
+	if (!-e $request_filename) {
+		rewrite  ^/(.*)$  /index.php/$1  last;
+		break;
+	}
+
+}
+
+location ~ \.php($|/) {
+	root           /opt/case/****/webroot;
+	fastcgi_pass   127.0.0.1:9000;
+	fastcgi_index  index.php;
+	include        fastcgi_params;
+
+	set $path_info "";
+	set $real_script_name $fastcgi_script_name;
+	if ($fastcgi_script_name ~ "^(.+?\.php)(/.+)$") {
+		set $real_script_name $1;
+		set $path_info $2;
+	}
+	fastcgi_param SCRIPT_FILENAME $document_root$real_script_name;
+	fastcgi_param SCRIPT_NAME $real_script_name;
+	fastcgi_param PATH_INFO $path_info;
+}
+</code>
+</p>
+
+</body>
+</html>

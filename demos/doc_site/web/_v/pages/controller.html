@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>{#S Framework} － {#Controller}</title>
+<!-- @common/head.html -->
+</head>
+<body>
+<!-- @common/header.html -->
+
+<p>
+	在 _c 目录下创建一个普通类来实现一个 <em>Controller</em> 而不需要继承任何父类。例如：<em>_c/test/user.php</em> 类名使用：<em>c_test_user</em>
+</p>
+
+<table>
+	<thead>
+		<tr>
+			<td>请求</td>
+			<td>类文件</td>
+			<td>类名</td>
+			<td>方法名</td>
+			<td>说明</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>/user/login.html</td>
+			<td>_c/user.php</td>
+			<td>c_user</td>
+			<td>login</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>/system/user/login.html</td>
+			<td>_c/system/user.php</td>
+			<td>c_system_user</td>
+			<td>login</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>/login.html</td>
+			<td>_c/index.php</td>
+			<td>c_index</td>
+			<td>login</td>
+			<td>根目录下的请求使用 index 作为默认控制器</td>
+		</tr>
+		<tr>
+			<td>/user/</td>
+			<td>_c/user.php</td>
+			<td>c_user</td>
+			<td>index</td>
+			<td>没有指定方法名时，使用 index 作为方法名</td>
+		</tr>
+		<tr>
+			<td>/user/login.svg</td>
+			<td>_c/user.php</td>
+			<td>c_user</td>
+			<td>login_svg</td>
+			<td>非 .html 作为扩展名时，方法名需要带上扩展名</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>
+	所有根目录下的请求会调用根控制器，文件为 <em>_c/index.php</em> 类名为 <em>c_index</em>。例如请求 <em>http://xxx.xxx/login.html</em> 会调用 <em>_c/index.php</em> 中的 <em>function login()</em>
+</p>
+
+<p>
+	每个控制器的方法都没有参数，在方法中访问 $_GET、$_POST 获取请求数据
+</p>
+
+<p>
+	使用 <code>return C( '/test/user/login.html' )</code> 实现跳转到另一个控制器处理请求。
+</p>
+<p>
+<code>
+/**
+ * 调用 Controller 处理一个页面，可以在控制其中递归调用实现页面跳转
+ * @param string $path	页面的相对路径
+ * @return string or array	返回字符串表示输出页面，返回对象以 JSON 格式输出数据
+ */
+function C( $path )
+{
+	return MSVC::callController( $path );
+}
+</code>
+</p>
+
+<p>
+	在根目录的 config.php 中配置 REWRITE 可以在调用控制器之前对请求进行重写，只是简单的正则表达式替换，请用正则表达式的语法编写
+</p>
+
+<p>
+	<code>
+'REWRITE' => [
+	'www\.xxxx\.com/aaa/(.+)'	=>	'www.xxxx.com/bbb/\1.html',
+	'/aaa/(.+)'	=>	'/aaa.html',
+],
+	</code>
+</p>
+
+<p>
+	在根目录的 config.php 中配置 ONREWRITE 可以注册一个入口处的回调，允许在调用控制器之前做一些处理或通过代码实现 url 重写（在REWRITE配置执行之后）
+</p>
+
+<p>
+	<code>
+'ONREWRITE' => function( $url ){
+	return $url;
+},
+	</code>
+</p>
+
+<p>
+	可以使用控制器来的构造函数对该控制器的所有方法进行统一处理，或通过 $GLOBALS['V'] 设置全局输出到视图的数据
+</p>
+
+<p>
+	<code>
+class c_pages
+{
+	function __construct()
+	{
+		$GLOBALS['V']['nav_list'] = [
+			[ page=>'s', name=>'S Framework', selected=>false ],
+			[ page=>'model', name=>'Model', selected=>false ],
+			[ page=>'service', name=>'Service', selected=>false ],
+			[ page=>'controller', name=>'Controller', selected=>false ],
+			[ page=>'view', name=>'View', selected=>false ],
+			[ page=>'tag', name=>'Tag', selected=>false ],
+			[ page=>'lang', name=>'Lang', selected=>false ],
+			[ page=>'download', name=>'Download', selected=>false ],
+		];
+	}
+	
+	.....
+}
+
+	</code>
+</p>
+
+<p>
+	可以使用 _willCall 在调用本控制器的任何 Action 之前进行处理
+</p>
+
+<p>
+	<code>
+class c_pages
+{
+	/**
+	 * 在调用本控制器类的每个 Action 之前进行处理
+	 * @param string $action 请求的 Action
+	 * @return false - 数据验证失败或其他情况禁止继续调用， true(或null) - 继续调用，其他结果 - 直接用该数据结束本次请求
+	 */
+	function _willCall( $action )
+	{
+		.....
+	}
+
+	.....
+}
+
+	</code>
+</p>
+
+<p>
+	可以使用 _didCall 在 Action 调用之后对结果进行处理
+</p>
+
+<p>
+	<code>
+class c_pages
+{
+	/**
+	 * 在调用本控制器类的每个 Action 调用之后对结果进行处理
+	 * @param string $action 请求的 Action
+	 * @param string $result 要输出的结果
+	 * @return null - 不对结果进行处理， 其他结果 - 直接用该数据代替结果
+	 */
+	function _didCall( $action, $result )
+	{
+		.....
+	}
+
+	.....
+}
+
+	</code>
+</p>
+
+<p>
+	让多个控制器继承某个父控制器，在父控制器中定义上述行为可以实现对多个控制器的处理
+</p>
+
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>S框架 Hello World!</title>
+</head>
+<body>
+
+<h1>Hello World!</h1>
+本页控制器代码：/default/_c/index.php<br/><br/><br/>
+本页视图文件：/default/_v/index.html<br/><br/><br/>
+
+
+<a href='{$url1}'>直接使用URL测试控制器 {$url1}</a><br/><br/>
+
+<a href='{$url2}'>使用伪静态测试控制器 {$url2}</a><br/><br/>
+
+控制器代码：/default/_c/package/class.php<br/><br/><br/>
+
+
+<fieldset><legend> 调用Service：package.class.action </legend>
+<pre>
+{$service_result}
+
+
+Service代码参考文件 /default/_s/package/class.php
+</pre>
+</fieldset>
+
+<!-- 引入公共头部，文件位于 /_v/footer.html -->
+<!-- @footer.html -->
+
+</body>
+</html>

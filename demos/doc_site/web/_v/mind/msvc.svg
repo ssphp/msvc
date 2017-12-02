@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="1026" height="241" viewBox="0 0 1026 241">
+<style type="text/css"><![CDATA[
+text { font:12px Dialog; }
+]]></style>
+<rect x="-1141" y="-880" width="3308" height="1852" style="fill:rgb(255,255,255);stroke:none" />
+<clipPath id="clip1"><path d="M14,14 L1012,14 L1012,227 L14,227 L14,14 Z" /></clipPath>
+<path d="M513.3449707,76.9999008 L513.2949829,86.9997711" style="fill:none;stroke:rgb(128,128,128)" clip-path="url(#clip1)" />
+<clipPath id="clip2"><path d="M14,14 L1012,14 L1012,227 L14,227 L14,14 Z" /></clipPath>
+<path d="M513.2949829,86.9997711 C256.4316711,91.8887177 128,99.2221222 128,109" style="fill:none;stroke:rgb(128,128,128)" clip-path="url(#clip2)" />
+<clipPath id="clip3"><path d="M14,14 L1012,14 L1012,227 L14,227 L14,14 Z" /></clipPath>
+<path d="M513.2949829,86.9997711 C418.8183289,91.8887177 371.5800171,99.2221222 371.5800171,109" style="fill:none;stroke:rgb(128,128,128)" clip-path="url(#clip3)" />
+<clipPath id="clip4"><path d="M14,14 L1012,14 L1012,227 L14,227 L14,14 Z" /></clipPath>
+<path d="M513.2949829,86.9997711 C584.4316406,91.8887177 620,99.2221222 620,109" style="fill:none;stroke:rgb(128,128,128)" clip-path="url(#clip4)" />
+<clipPath id="clip5"><path d="M14,14 L1012,14 L1012,227 L14,227 L14,14 Z" /></clipPath>
+<path d="M513.2949829,86.9997711 C757.0983276,91.8887177 879,99.2221222 879,109" style="fill:none;stroke:rgb(128,128,128)" clip-path="url(#clip5)" />
+<clipPath id="clip6"><path d="M452,14 L575,14 L575,78 L452,78 L452,14 Z" /></clipPath>
+<path d="M572,45.5 C572,29.2075996 545.5847778,16 513,16 C480.4151917,16 454,29.2075996 454,45.5 C454,61.7924004 480.4151917,75 513,75 C545.5847778,75 572,61.7924004 572,45.5 Z M572,45.5" style="fill:none;stroke:rgb(128,128,128)" clip-path="url(#clip6)" />
+<text x="479" y="53" style="font:18px Dialog">M S V C</text>
+<clipPath id="clip7"><path d="M14,107 L242,107 L242,227 L14,227 L14,107 Z" /></clipPath>
+<path d="M128,141 L128,154" style="fill:none;stroke:rgb(128,128,128)" clip-path="url(#clip7)" />
+<clipPath id="clip8"><path d="M14,107 L242,107 L242,227 L14,227 L14,107 Z" /></clipPath>
+<path d="M128,154 L127.6532593,154 L127.6532593,163" style="fill:none;stroke:rgb(128,128,128)" clip-path="url(#clip8)" />
+<clipPath id="clip9"><path d="M95,107 L162,107 L162,144 L95,144 L95,107 Z" /></clipPath>
+<path d="M97,142 L159,142" style="fill:none;stroke:rgb(128,128,128)" clip-path="url(#clip9)" />
+<text x="105" y="131" style="font:16px Dialog">Model</text>
+<clipPath id="clip10"><path d="M122,142 L135,142 L135,155 L122,155 L122,142 Z" /></clipPath>
+<path d="M132.5,148 C132.5,145.5147095 130.4852905,143.5 128,143.5 C125.5147095,143.5 123.5,145.5147095 123.5,148 C123.5,150.4852905 125.5147095,152.5 128,152.5 C130.4852905,152.5 132.5,150.4852905 132.5,148 Z M132.5,148" style="fill:rgb(210,230,255);stroke:none" clip-path="url(#clip10)" />
+<clipPath id="clip11"><path d="M122,142 L135,142 L135,155 L122,155 L122,142 Z" /></clipPath>
+<path d="M132.5,148 C132.5,145.5147095 130.4852905,143.5 128,143.5 C125.5147095,143.5 123.5,145.5147095 123.5,148 C123.5,150.4852905 125.5147095,152.5 128,152.5 C130.4852905,152.5 132.5,150.4852905 132.5,148 Z M132.5,148" style="fill:none;stroke:rgb(180,200,240)" clip-path="url(#clip11)" />
+<clipPath id="clip12"><path d="M122,142 L135,142 L135,155 L122,155 L122,142 Z" /></clipPath>
+<path d="M126,148 L130,148" style="fill:none;stroke:rgb(150,160,200)" clip-path="url(#clip12)" />
+<clipPath id="clip13"><path d="M14,161 L242,161 L242,227 L14,227 L14,161 Z" /></clipPath>
+<path d="M16,163 L239,163 L239,224 L16,224 Z M16,163" style="fill:rgb(255,255,255);stroke:none" clip-path="url(#clip13)" />
+<clipPath id="clip14"><path d="M14,161 L242,161 L242,227 L14,227 L14,161 Z" /></clipPath>
+<path d="M16,163 L239,163 L239,224 L16,224 Z M16,163" style="fill:none;stroke:rgb(128,128,128)" clip-path="url(#clip14)" />
+<text x="22" y="176" style="font:12px Dialog">{#Operation of data access}</text>
+<text x="22" y="188" style="font:12px Dialog">自动生成默认的 Model</text>
+<text x="22" y="203" style="font:12px Dialog">在 _m 目录下继承 Model 类可进行扩展</text>
+<text x="22" y="218" style="font:12px Dialog">使用 M( $model_name ) 进行调用</text>
+<clipPath id="clip15"><path d="M250,107 L494,107 L494,212 L250,212 L250,107 Z" /></clipPath>
+<path d="M371.5800171,141 L371.6450195,153.9998474" style="fill:none;stroke:rgb(128,128,128)" clip-path="url(#clip15)" />
+<clipPath id="clip16"><path d="M250,107 L494,107 L494,212 L250,212 L250,107 Z" /></clipPath>
+<path d="M371.6450195,153.9998474 L371.6149902,153.9998474 L371.6149902,163" style="fill:none;stroke:rgb(128,128,128)" clip-path="url(#clip16)" />
+<clipPath id="clip17"><path d="M333,107 L411,107 L411,144 L333,144 L333,107 Z" /></clipPath>
+<path d="M335,142 L408,142" style="fill:none;stroke:rgb(128,128,128)" clip-path="url(#clip17)" />
+<text x="343" y="131" style="font:16px Dialog">Service</text>
+<clipPath id="clip18"><path d="M366,142 L379,142 L379,155 L366,155 L366,142 Z" /></clipPath>
+<path d="M376.5,148 C376.5,145.5147095 374.4852905,143.5 372,143.5 C369.5147095,143.5 367.5,145.5147095 367.5,148 C367.5,150.4852905 369.5147095,152.5 372,152.5 C374.4852905,152.5 376.5,150.4852905 376.5,148 Z M376.5,148" style="fill:rgb(210,230,255);stroke:none" clip-path="url(#clip18)" />
+<clipPath id="clip19"><path d="M366,142 L379,142 L379,155 L366,155 L366,142 Z" /></clipPath>
+<path d="M376.5,148 C376.5,145.5147095 374.4852905,143.5 372,143.5 C369.5147095,143.5 367.5,145.5147095 367.5,148 C367.5,150.4852905 369.5147095,152.5 372,152.5 C374.4852905,152.5 376.5,150.4852905 376.5,148 Z M376.5,148" style="fill:none;stroke:rgb(180,200,240)" clip-path="url(#clip19)" />
+<clipPath id="clip20"><path d="M366,142 L379,142 L379,155 L366,155 L366,142 Z" /></clipPath>
+<path d="M370,148 L374,148" style="fill:none;stroke:rgb(150,160,200)" clip-path="url(#clip20)" />
+<clipPath id="clip21"><path d="M250,161 L494,161 L494,212 L250,212 L250,161 Z" /></clipPath>
+<path d="M252,163 L491,163 L491,209 L252,209 Z M252,163" style="fill:rgb(255,255,255);stroke:none" clip-path="url(#clip21)" />
+<clipPath id="clip22"><path d="M250,161 L494,161 L494,212 L250,212 L250,161 Z" /></clipPath>
+<path d="M252,163 L491,163 L491,209 L252,209 Z M252,163" style="fill:none;stroke:rgb(128,128,128)" clip-path="url(#clip22)" />
+<text x="258" y="176" style="font:12px Dialog">将业务逻辑进行封装，以接口方式对外提供</text>
+<text x="258" y="188" style="font:12px Dialog">在 _s 目录下不需要继承任何类</text>
+<text x="258" y="203" style="font:12px Dialog">使用 S( $service_name, $args ) 进行调用</text>
+<clipPath id="clip23"><path d="M502,107 L739,107 L739,227 L502,227 L502,107 Z" /></clipPath>
+<path d="M620,141 L620,154" style="fill:none;stroke:rgb(128,128,128)" clip-path="url(#clip23)" />
+<clipPath id="clip24"><path d="M502,107 L739,107 L739,227 L502,227 L502,107 Z" /></clipPath>
+<path d="M620,154 L620,154 L620,163" style="fill:none;stroke:rgb(128,128,128)" clip-path="url(#clip24)" />
+<clipPath id="clip25"><path d="M574,107 L667,107 L667,144 L574,144 L574,107 Z" /></clipPath>
+<path d="M576,142 L664,142" style="fill:none;stroke:rgb(128,128,128)" clip-path="url(#clip25)" />
+<text x="583" y="131" style="font:16px Dialog">Controller</text>
+<clipPath id="clip26"><path d="M614,142 L627,142 L627,155 L614,155 L614,142 Z" /></clipPath>
+<path d="M624.5,148 C624.5,145.5147095 622.4852905,143.5 620,143.5 C617.5147095,143.5 615.5,145.5147095 615.5,148 C615.5,150.4852905 617.5147095,152.5 620,152.5 C622.4852905,152.5 624.5,150.4852905 624.5,148 Z M624.5,148" style="fill:rgb(210,230,255);stroke:none" clip-path="url(#clip26)" />
+<clipPath id="clip27"><path d="M614,142 L627,142 L627,155 L614,155 L614,142 Z" /></clipPath>
+<path d="M624.5,148 C624.5,145.5147095 622.4852905,143.5 620,143.5 C617.5147095,143.5 615.5,145.5147095 615.5,148 C615.5,150.4852905 617.5147095,152.5 620,152.5 C622.4852905,152.5 624.5,150.4852905 624.5,148 Z M624.5,148" style="fill:none;stroke:rgb(180,200,240)" clip-path="url(#clip27)" />
+<clipPath id="clip28"><path d="M614,142 L627,142 L627,155 L614,155 L614,142 Z" /></clipPath>
+<path d="M618,148 L622,148" style="fill:none;stroke:rgb(150,160,200)" clip-path="url(#clip28)" />
+<clipPath id="clip29"><path d="M502,161 L739,161 L739,227 L502,227 L502,161 Z" /></clipPath>
+<path d="M504,163 L736,163 L736,224 L504,224 Z M504,163" style="fill:rgb(255,255,255);stroke:none" clip-path="url(#clip29)" />
+<clipPath id="clip30"><path d="M502,161 L739,161 L739,227 L502,227 L502,161 Z" /></clipPath>
+<path d="M504,163 L736,163 L736,224 L504,224 Z M504,163" style="fill:none;stroke:rgb(128,128,128)" clip-path="url(#clip30)" />
+<text x="510" y="176" style="font:12px Dialog">与访问地址一一对应的控制器</text>
+<text x="510" y="188" style="font:12px Dialog">在 _c 目录下不需要继承任何类</text>
+<text x="510" y="203" style="font:12px Dialog">默认使用 .html 后缀指定 Action</text>
+<text x="510" y="218" style="font:12px Dialog">使用 return C( $path ) 进行控制器的跳转</text>
+<clipPath id="clip31"><path d="M747,107 L1012,107 L1012,215 L747,215 L747,107 Z" /></clipPath>
+<path d="M879,141 L879,154" style="fill:none;stroke:rgb(128,128,128)" clip-path="url(#clip31)" />
+<clipPath id="clip32"><path d="M747,107 L1012,107 L1012,215 L747,215 L747,107 Z" /></clipPath>
+<path d="M879,154 L879,154 L879,163" style="fill:none;stroke:rgb(128,128,128)" clip-path="url(#clip32)" />
+<clipPath id="clip33"><path d="M852,107 L907,107 L907,144 L852,144 L852,107 Z" /></clipPath>
+<path d="M854,142 L904,142" style="fill:none;stroke:rgb(128,128,128)" clip-path="url(#clip33)" />
+<text x="861" y="131" style="font:16px Dialog">View</text>
+<clipPath id="clip34"><path d="M873,142 L886,142 L886,155 L873,155 L873,142 Z" /></clipPath>
+<path d="M883.5,148 C883.5,145.5147095 881.4852905,143.5 879,143.5 C876.5147095,143.5 874.5,145.5147095 874.5,148 C874.5,150.4852905 876.5147095,152.5 879,152.5 C881.4852905,152.5 883.5,150.4852905 883.5,148 Z M883.5,148" style="fill:rgb(210,230,255);stroke:none" clip-path="url(#clip34)" />
+<clipPath id="clip35"><path d="M873,142 L886,142 L886,155 L873,155 L873,142 Z" /></clipPath>
+<path d="M883.5,148 C883.5,145.5147095 881.4852905,143.5 879,143.5 C876.5147095,143.5 874.5,145.5147095 874.5,148 C874.5,150.4852905 876.5147095,152.5 879,152.5 C881.4852905,152.5 883.5,150.4852905 883.5,148 Z M883.5,148" style="fill:none;stroke:rgb(180,200,240)" clip-path="url(#clip35)" />
+<clipPath id="clip36"><path d="M873,142 L886,142 L886,155 L873,155 L873,142 Z" /></clipPath>
+<path d="M877,148 L881,148" style="fill:none;stroke:rgb(150,160,200)" clip-path="url(#clip36)" />
+<clipPath id="clip37"><path d="M747,161 L1012,161 L1012,215 L747,215 L747,161 Z" /></clipPath>
+<path d="M749,163 L1009,163 L1009,212 L749,212 Z M749,163" style="fill:rgb(255,255,255);stroke:none" clip-path="url(#clip37)" />
+<clipPath id="clip38"><path d="M747,161 L1012,161 L1012,215 L747,215 L747,161 Z" /></clipPath>
+<path d="M749,163 L1009,163 L1009,212 L749,212 Z M749,163" style="fill:none;stroke:rgb(128,128,128)" clip-path="url(#clip38)" />
+<text x="754" y="176" style="font:12px Dialog">根据配置中的 VIEW_TAG 对视图文件进行编译</text>
+<text x="754" y="191" style="font:12px Dialog">在 _v 目录下的任何文件</text>
+<text x="754" y="206" style="font:12px Dialog">使用 V( $file, $data ) 进行调用</text>
+</svg>

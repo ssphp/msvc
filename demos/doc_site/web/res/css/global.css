@@ -1,0 +1,82 @@
+@CHARSET "UTF-8";
+
+* {
+	box-sizing: border-box;
+}
+
+body, ul, li, h1, h2 {
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	color: #333;
+}
+
+ul {
+	list-style: none;
+}
+
+body>header>ul {
+	display: table;
+}
+
+body>header>ul>li {
+	height: 54px;
+	line-height: 54px;
+	font-size: 18px;
+	text-align: center;
+	padding: 0px 20px;
+	display: inline-block;
+	cursor: pointer;
+}
+
+body>header>ul>li.selected, body>header>ul>li:HOVER {
+	color: #17f;
+	border-bottom: 2px solid #17f;
+}
+
+body>header>#topToolBar{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	padding: 20px;
+}
+
+body>p{
+	padding: 0px 10px;
+	line-height: 20px;
+	text-indent: 30px;
+}
+
+body>p>em{
+	color: #17f;
+	font-style: normal;
+}
+
+body>p>code{
+	text-indent: 0px;
+	color: #17f;
+	padding: 0px 20px 10px 20px;
+	margin: 0px;
+	display: inline-block;
+	white-space: pre-wrap;
+	background: #ffe;
+	tab-size: 32px;
+}
+
+body>table{
+	margin-left: 30px;
+	color: #17f;
+	padding: 10px 20px;
+	background: #ffe;
+}
+
+body>table td{
+	padding: 3px 5px;
+}
+
+body>table>thead td{
+	text-align: center;
+	font-weight: bold;
+}

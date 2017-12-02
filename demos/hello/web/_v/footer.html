@@ -1,0 +1,54 @@
+<br/><br/>
+
+
+如果无法使用伪静态测试看到正确内容意味着Web服务器的配置并不正确！<br/><br/><br/>
+
+<fieldset><legend> Apache 伪静态配置 </legend>
+<pre>
+RewriteEngine on
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]
+</pre>
+</fieldset><br/><br/>
+
+
+<fieldset><legend> Nginx 伪静态配置 </legend>
+<pre>
+location / {
+	root   /opt/case/****/webroot;
+	index  index.php;
+	if (!-e $request_filename) {
+		rewrite  ^/(.*)$  /index.php/$1  last;
+		break;
+	}
+
+}
+
+location ~ \.php($|/) {
+	root           /opt/case/****/webroot;
+	fastcgi_pass   127.0.0.1:9000;
+	fastcgi_index  index.php;
+	include        fastcgi_params;
+
+	set $path_info "";
+	set $real_script_name $fastcgi_script_name;
+	if ($fastcgi_script_name ~ "^(.+?\.php)(/.+)$") {
+		set $real_script_name $1;
+		set $path_info $2;
+	}
+	fastcgi_param SCRIPT_FILENAME $document_root$real_script_name;
+	fastcgi_param SCRIPT_NAME $real_script_name;
+	fastcgi_param PATH_INFO $path_info;
+}
+</pre>
+</fieldset><br/><br/>
+
+
+如果打开了 SELinux 而无法产生日志！<br/><br/><br/>
+
+<fieldset><legend> 在项目的根目录执行(webroot的上一级) </legend>
+<pre>
+chcon -t httpd_sys_rw_content_t logs
+</pre>
+</fieldset>

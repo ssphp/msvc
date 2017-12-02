@@ -1,0 +1,36 @@
+S Framework		S 框架
+TagLib			标签库
+Lang			多语言
+Config			配置
+Download		下载
+
+#msvc.svg
+Operation of data access		对数据的操作进行封装
+
+#folder.svg
+Folder								文件夹
+Default Model Folder				默认的 Model 层目录
+Default Service Folder				默认的 Service 层目录
+Default Controller Folder			默认的 Controller 层目录
+Default View Folder					默认的 View 层目录
+Common config，for all sites			默认配置文件，对所有站点生效
+Automatic loading Libraries			会自动加载的工具类或第三方库
+Site's Model Folder					站点的 Model 层目录
+Site's Service Folder				站点的 Service 层目录
+Site's Controller Folder			站点的 Controller 层目录
+Site's View Folder					站点的 View 层目录
+Config for the site					站点配置文件
+Site's Model Folder					站点的 Model 层目录
+Site's Service Folder				站点的 Service 层目录
+Site's Controller Folder			站点的 Controller 层目录
+Site's View Folder					站点的 View 层目录
+Config for the site					站点配置文件
+Site's Model Folder					站点的 Model 层目录
+Site's Service Folder				站点的 Service 层目录
+Site's Controller Folder			站点的 Controller 层目录
+Site's View Folder					站点的 View 层目录
+Config for the site					站点配置文件
+Localization multi-language Folder	语言文件	目录，View中使用 {#...} 标签 或者代码调用 L( '...' ) 时会使用这里的语言进行转换输出
+Virtual host Folder					虚拟主机目录，一般只有一个 index.php 作为入口
+Resource Folder						资源文件目录，一般会配置 res.xxxx.xxx 这样的二级域名便于 CDN 加速
+View cache Folder					View 层的预编译缓存目录

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>{#S Framework} － {#Tag}</title>
+<!-- @common/head.html -->
+</head>
+<body>
+<!-- @common/header.html -->
+
+<p>
+	在 Controller 中定义 _TAG_xxx 方法实现 TagLib 的功能，在 View 文件中使用 <包名.类名:Tag方法名> 调用一个 TagLib
+</p>
+
+<p>
+	如果在根控制器 index 中定义 Tag，调用时省略冒号前面的部分, 如 <code>&lt;:list>&lt;/:list></code>
+</p>
+
+<p>
+在 Controller 中的 Tag 处理函数
+</p>
+
+<p>
+<code>
+class c_bb_aa
+{
+	function _TAG_list()
+	{
+		return [aa=>11,bb=>22,'list'=>[a=>1,b=>2,c=>3,d=>4]];
+	}
+}
+</code>
+</p>
+
+<p>
+调用 TagLib 的 View 代码
+</p>
+
+<p>
+<code>
+&lt;bb.aa:list>
+	aa:&#x7b;$aa}&lt;br/>
+	bb:&#x7b;$bb}&lt;br/>
+	&lt;ul>
+	&lt;!-- #list -->
+		&lt;li> *** &#x7b;$key}: &#x7b;$value}&lt;/li>
+	&lt;!-- /list -->
+	&lt;/ul>
+&lt;/bb.aa:list>
+</code>
+</p>
+
+<p>
+运行结果
+</p>
+
+<p>
+<code>
+<bb.aa:list>
+	aa:{$aa}<br/>
+	bb:{$bb}<br/>
+	<!-- #list -->
+		*** {$key}: {$value}<br/>
+	<!-- /list -->
+</bb.aa:list>
+</code>
+</p>
+
+</body>
+</html>
